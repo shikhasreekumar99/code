@@ -8,7 +8,6 @@ import threading
 conn = sqlite3.connect(r"C:\Users\user-pc\Downloads\myMain\store.db")
 c = conn.cursor()
 # date
-# date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 date = datetime.datetime.now().date()
 
 # temporary lists .......
@@ -190,15 +189,6 @@ class Application:
 
                 # total configuration
                 self.total_l.configure(text='Total: KSH. ' + str(sum(products_price)))
-
-                # clear the window......
-                # self.quantity_l.place_forget()
-                # self.quantity_e.place_forget()
-                # self.discount_l.place_forget()
-                # self.discount_e.place_forget()
-                # self.productname.configure(text='')
-                # self.tempprice.configure(text='')
-                # self.add_to_cart_btn.destroy()
 
                 # autofocus to enter id .....
                 self.enterid_e.focus()
