@@ -1,15 +1,16 @@
 # import all modules
 from tkinter import *
-import sqlite3, datetime, math, os, random
+import sqlite3, math, os, random
+from datetime import datetime
 from tkinter import messagebox
 import threading
 
-
 conn = sqlite3.connect(r"C:\Users\user-pc\Downloads\myMain\store.db")
 c = conn.cursor()
-# date
-# date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-date = datetime.datetime.now().date()
+# datetime object containing current date and time
+now = datetime.now()
+# dd/mm/YY H:M:S
+date = now.strftime("%d/%m/%Y %H:%M:%S")
 
 # temporary lists .......
 products_list = []
@@ -35,16 +36,16 @@ class Application:
         self.right.pack(side=RIGHT)
 
         # components
-        self.heading = Label(self.left, bg='white', text='Tesla Collections', font=('arial 40 bold'))
+        self.heading = Label(self.left, bg='white', text='Store Mangement System', font=('arial 30 bold'))
         self.heading.place(x=0, y=0)
 
-        self.user = Label(self.right, text= 'UserName: ' + str(username), font='arial 16 bold', fg='white', bg='lightblue')
-        self.user.place(x=200, y=0)
+        self.user = Label(self.right, text= 'UserName: ' + str(username), font='arial 16 bold', fg='black',bg='lightblue')
+        self.user.place(x=300, y=0)
 
-        #self.logout = Button(self.right, text='Logout', cursor='hand2', width=22, height=2, bg='lightblue', fg='white', command=self.logout)
-       # self.logout.place(x=500, y=0)
+        self.logout = Button(self.right, text='Logout', cursor='hand2', width=22, height=2, bg='lightblue', fg='black', command=self.logout)
+        self.logout.place(x=500, y=600)
 
-        self.date_l = Label(self.right, text="Date: " + str(date), font='arial 16 italic', bg='lightblue', fg='white')
+        self.date_l = Label(self.right, text="Date: " + str(date), font='arial 16 italic', bg='lightblue', fg='black')
         self.date_l.place(x=0, y=0)
 
         # table invoice ......
@@ -62,7 +63,7 @@ class Application:
         self.enterid = Label(self.left, text="Enter Product's ID", font=('arial 18 bold'), bg='white')
         self.enterid.place(x=0, y=80)
 
-        self.enterid_e = Entry(self.left, width=25, font=('arial 18 bold'), bg='lightblue')
+        self.enterid_e = Entry(self.left, width=25, font=('arial 18 bold'), bg='white')
         self.enterid_e.place(x=190, y=80)
         self.enterid_e.focus()
 
@@ -81,10 +82,6 @@ class Application:
         # total label.....
         self.total_l = Label(self.right, text='', font=('arial 40 bold'), bg='lightblue', fg='white')
         self.total_l.place(x=0, y=600)
-
-        self.logout = Button(self.right, text='Logout', cursor='hand2', width=22, height=2, bg='lightblue', fg='black',
-                             command=self.logout)
-        self.logout.place(x=500, y=600)
 
     def logout(self):
         for i in root.winfo_children():
@@ -191,15 +188,6 @@ class Application:
                 # total configuration
                 self.total_l.configure(text='Total: KSH. ' + str(sum(products_price)))
 
-                # clear the window......
-                # self.quantity_l.place_forget()
-                # self.quantity_e.place_forget()
-                # self.discount_l.place_forget()
-                # self.discount_e.place_forget()
-                # self.productname.configure(text='')
-                # self.tempprice.configure(text='')
-                # self.add_to_cart_btn.destroy()
-
                 # autofocus to enter id .....
                 self.enterid_e.focus()
                 self.enterid_e.delete(0, END)
@@ -222,8 +210,8 @@ class Application:
             os.makedirs(directory)
 
         # Templates for the bills
-        company = "\t\t\t\tTesla Collections.\n"
-        address = "\t\t\t\tChuka, Kenya.\n"
+        company = "\t\t\t\tStore Mangement System.\n"
+        address = "\t\t\t\tChuka, India.\n"
         phone = "\t\t\t\tMobile No: 0711354107.\n"
         sample = "\t\t\t\t\tInvoice.\n"
         dt = "\t\t\t\t" + str(date)
@@ -567,7 +555,7 @@ _ana1color = '#d9d9d9' # X11 color: 'gray85'
 _ana2color = '#d9d9d9' # X11 color: 'gray85'
 font10 = "-family {Courier New} -size 10 -weight normal -slant"  \
     " roman -underline 0 -overstrike 0"
-font11 = "-family {Kristen ITC} -size 34 -weight normal -slant"  \
+font11 = "-family {Courier New} -size 25 -weight normal -slant"  \
     " roman -underline 0 -overstrike 0"
 font12 = "-family {Segoe UI} -size 18 -weight normal -slant "  \
     "italic -underline 0 -overstrike 0"
@@ -587,7 +575,7 @@ class Login:
 
         self.Label1 = Label(self.Frame1)
         self.Label1.place(relx=0.23, rely=0.38, height=41, width=500)
-        self.Label1.configure(background="#0066ff", borderwidth="0", disabledforeground="#a3a3a3", font=font11, foreground="#ffffff", text='''Tesla Collections''', width=154)
+        self.Label1.configure(background="#0066ff", borderwidth="0", disabledforeground="#a3a3a3", font=font11, foreground="#ffffff", text='''Store Mangement System''', width=154)
 
         self.loginLabel = Label(master)
         self.loginLabel.place(relx=0.43, rely=0.30, height=31, width=94)
@@ -633,11 +621,9 @@ class Login:
 
 root = Tk()
 Login(root)
-root.title("Tesla Collections")
-root.iconbitmap(r"teslacollections.icon")
+root.title("Store Mangement System")
+#root.iconbitmap(r"teslacollections.icon")
 root.configure(background="#d9d9d9")
 root.resizable(False, False)
 root.geometry("1366x768+0+0")
 root.mainloop()
-
-
