@@ -6,7 +6,7 @@ import datetime
 
 root=Tk()
 root.geometry("1600x8000")
-root.title("Restaurant Management System")
+root.title("Restaurant Billing System")
 
 Tops=Frame(root, width=1600,relief=SUNKEN)
 Tops.pack(side=TOP)
@@ -19,7 +19,7 @@ f1.pack(side=LEFT)
 #================================================================================
 localtime=time.asctime(time.localtime(time.time()))
 
-lblInfo=Label(Tops,font=('arial',50,'bold'),text="How Much You Can Eat ",fg="brown",bd=10,anchor='w')
+lblInfo=Label(Tops,font=('arial',50,'bold'),text="How Much You Can Eat",fg="brown",bd=10,anchor='w')
 lblInfo.grid(row=0,column=0)
 
 lblInfo=Label(Tops,font=('arial',20,'bold'),text=localtime,fg="brown",bd=10,anchor='w')
